@@ -43,4 +43,43 @@ public class MenuUtils {
         }
         return result;
     }
+    /**
+     *  查询菜单
+     *
+     * @param accessToken 凭证
+     * @Author Xg
+     * @Date 2016/9/9 17:37
+     */
+    public static String getMenu(String accessToken){
+        String menu = "";
+        String url = Urls.menu_get_url.replace("ACCESS_TOKEN",accessToken);
+        JSONObject jsonObject = CommonUtils.httpsRequest(url,"POST",null);
+        if(null != jsonObject){
+            menu = jsonObject.toString();
+        }
+        return menu;
+    }
+    /**
+     *  删除菜单
+     *
+     * @param accessToken 凭证
+     * @Author Xg
+     * @Date 2016/9/9 17:34
+     */
+    public static boolean deleteMenu(String accessToken){
+        boolean result = false;
+        String url = Urls.menu_delete_url.replace("ACCESS_TOKEN",accessToken);
+        JSONObject jsonObject = CommonUtils.httpsRequest(url,"POST",null);
+        if(null != jsonObject){
+            int errorCode = jsonObject.getInt("errcode");
+            String errorMsg = jsonObject.getString("errmsg");
+            if(0 == errorCode){
+                result = true;
+            }else{
+                result = false;
+                log.error("删除菜单失败 errcode:{} errmsg:{}", errorCode, errorMsg);
+            }
+        }
+        return result;
+    }
 }

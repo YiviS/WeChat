@@ -90,7 +90,6 @@ public class CommonUtils {
         }
         return jsonObject;
     }
-
     /**
      * 获取接口访问凭证token
      *
@@ -137,27 +136,7 @@ public class CommonUtils {
         }
         return IP;
     }
-    /**
-     *  通过httpclient获取token
-     *
-     *  @param appid 凭证
-     *  @param appsecret 密钥
-     *  @Author Xg
-     *  @Date 2016/9/9 14:34
-     */
-    public static Token getTokenByHttpClient(String appid,String appsecret){
-        Token token = null;
-        String requestUrl = Urls.token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
-        try {
-            com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(HttpClientUtils.executeHttpGet(requestUrl));
-            token = new Token();
-            token.setAccessToken(jsonObject.getString("access_token"));
-            token.setExpiresIn(Integer.parseInt(jsonObject.getString("expires_in")));
-        }catch (Exception e){
-            log.info("获取token错误："+ ExceptionUtils.getErrorInfo(e));
-        }
-        return token;
-    };
+
     /**
      * URL编码（utf-8）
      *
@@ -194,4 +173,26 @@ public class CommonUtils {
             fileExt = ".mp4";
         return fileExt;
     }
+
+    //    /**
+//     *  通过httpclient获取token
+//     *
+//     *  @param appid 凭证
+//     *  @param appsecret 密钥
+//     *  @Author Xg
+//     *  @Date 2016/9/9 14:34
+//     */
+//    public static Token getTokenByHttpClient(String appid,String appsecret){
+//        Token token = null;
+//        String requestUrl = Urls.token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
+//        try {
+//            com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(HttpClientUtils.executeHttpGet(requestUrl));
+//            token = new Token();
+//            token.setAccessToken(jsonObject.getString("access_token"));
+//            token.setExpiresIn(Integer.parseInt(jsonObject.getString("expires_in")));
+//        }catch (Exception e){
+//            log.info("获取token错误："+ ExceptionUtils.getErrorInfo(e));
+//        }
+//        return token;
+//    };
 }

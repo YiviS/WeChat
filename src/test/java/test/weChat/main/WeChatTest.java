@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @Author Xg
  * @Date 2016/9/9 12:54
- * @Desc
+ * @Desc 基础测试类
  */
 public class WeChatTest {
 
