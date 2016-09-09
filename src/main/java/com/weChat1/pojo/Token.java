@@ -1,4 +1,4 @@
-package com.weChat.pojo;
+package com.weChat1.pojo;
 
 /**
  * @Author Xg

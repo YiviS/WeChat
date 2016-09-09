@@ -1,8 +1,8 @@
 package test.weChat.main;
 
-import com.weChat.pojo.Token;
-import com.weChat.utils.CommonUtils;
-import com.weChat.utils.Urls;
+import com.weChat1.pojo.Token;
+import com.weChat1.utils.CommonUtils;
+import com.weChat1.utils.Urls;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
