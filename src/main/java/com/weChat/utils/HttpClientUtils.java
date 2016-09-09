@@ -1,4 +1,4 @@
-package com.weChat1.utils;
+package com.weChat.utils;
 
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;

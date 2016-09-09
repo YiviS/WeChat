@@ -1,4 +1,4 @@
-package com.weChat1.entity.menu;
+package com.weChat.entity.menu;
 
 /**
  * @Author Xg

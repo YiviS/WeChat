@@ -1,4 +1,4 @@
-package com.weChat1.utils;
+package com.weChat.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import com.alibaba.fastjson.JSON;
-import com.weChat1.pojo.Token;
+import com.weChat.pojo.Token;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
