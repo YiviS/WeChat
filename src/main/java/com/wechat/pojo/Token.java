@@ -1,9 +1,9 @@
-package com.wechat.pojo;
+package com.weChat.pojo;
 
 /**
  * @Author Xg
  * @Date 2016/9/9 13:04
- * @Desc
+ * @Desc 凭证
  */
 public class Token {
 

@@ -1,6 +1,6 @@
-package com.wechat.utils;
+package com.weChat.utils;
 
-import com.wechat.entity.menu.Menu;
+import com.weChat.entity.menu.Menu;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.wechat.utils;
+package com.weChat.utils;
 /**
  * @Author XuGuang
  * @Date 2016-7-4 11:59

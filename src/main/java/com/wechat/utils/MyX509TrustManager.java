@@ -1,4 +1,4 @@
-package com.wechat.utils;
+package com.weChat.utils;
 
 import javax.net.ssl.X509TrustManager;
 import java.security.cert.CertificateException;
