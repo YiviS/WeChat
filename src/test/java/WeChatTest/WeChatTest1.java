@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
  * @Date 2016/9/9 12:54
  * @Desc
  */
-public class WeChatTest {
+public class WeChatTest1 {
 
-    private static Logger log = LoggerFactory.getLogger(WeChatTest.class);
+    private static Logger log = LoggerFactory.getLogger(WeChatTest1.class);
 
     /**
      * 获取凭证Token
