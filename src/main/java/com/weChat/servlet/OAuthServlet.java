@@ -35,7 +35,7 @@ public class OAuthServlet extends HttpServlet {
             // 获取用户信息
             SNSUserInfo snsUserInfo = AdvancedUtils.getSNSUserInfo(accessToken, openId);
 
-            // 设置要传递的参数123123
+            // 设置要传递的参数123123123
             request.setAttribute("snsUserInfo", snsUserInfo);
         }
         // 跳转到index.jsp
