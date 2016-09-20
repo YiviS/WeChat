@@ -1,9 +1,9 @@
 package test.weChat.menu;
 
-import com.weChat.pojo.Token;
-import com.weChat.utils.CommonUtils;
-import com.weChat.utils.MenuUtils;
-import com.weChat.utils.Urls;
+import com.weChat.entity.pojo.Token;
+import com.weChat.util.CommonUtil;
+import com.weChat.util.Contents;
+import com.weChat.util.MenuUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class MenuTest {
     @Test
     public void buidMenu(){
         // 调用接口获取凭证
-        Token token = CommonUtils.getToken(Urls.appId, Urls.appSecret);
+        Token token = CommonUtil.getToken(Contents.appId, Contents.appSecret);
         if (null != token) {
             // 创建菜单
             boolean result = MenuUtils.createMenu(MenuList.getMenu(), token.getAccessToken());
@@ -39,7 +39,7 @@ public class MenuTest {
      */
     @Test
     public void getMenu(){
-        Token token = CommonUtils.getToken(Urls.appId,Urls.appSecret);
+        Token token = CommonUtil.getToken(Contents.appId,Contents.appSecret);
         if(null != token){
             String menu = MenuUtils.getMenu(token.getAccessToken());
             log.info("菜单获取成功：");
@@ -51,7 +51,7 @@ public class MenuTest {
      */
     @Test
     public void deleteMenu(){
-        Token token = CommonUtils.getToken(Urls.appId,Urls.appSecret);
+        Token token = CommonUtil.getToken(Contents.appId,Contents.appSecret);
         if(null != token){
             boolean result = MenuUtils.deleteMenu(token.getAccessToken());
             if(result){

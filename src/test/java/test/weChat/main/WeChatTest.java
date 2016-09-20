@@ -1,8 +1,8 @@
 package test.weChat.main;
 
-import com.weChat.pojo.Token;
-import com.weChat.utils.CommonUtils;
-import com.weChat.utils.Urls;
+import com.weChat.entity.pojo.Token;
+import com.weChat.util.CommonUtil;
+import com.weChat.util.Contents;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class WeChatTest {
     @Test
     public void getToken(){
         // 调用接口获取凭证
-        Token token = CommonUtils.getToken(Urls.appId, Urls.appSecret);
+        Token token = CommonUtil.getToken(Contents.appId, Contents.appSecret);
         System.out.println("Token:"+token.getAccessToken());
         System.out.println("ExpiresIn"+token.getExpiresIn());
     }
@@ -32,8 +32,8 @@ public class WeChatTest {
     @Test
     public void getID(){
         // 调用接口获取凭证
-        Token token = CommonUtils.getToken(Urls.appId, Urls.appSecret);
-        String IP = CommonUtils.getIP(token.getAccessToken());
+        Token token = CommonUtil.getToken(Contents.appId, Contents.appSecret);
+        String IP = CommonUtil.getIP(token.getAccessToken());
         System.out.println(IP);
     }
 }
