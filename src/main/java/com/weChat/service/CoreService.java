@@ -1,9 +1,14 @@
 package com.weChat.service;
 
 import com.weChat.entity.message.req.ReqBaseMessage;
+import com.weChat.entity.message.req.ReqTextMessage;
+import com.weChat.entity.message.resp.RespBaseMessage;
 import com.weChat.entity.message.resp.RespTextMessage;
 import com.weChat.util.MessageUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @Author Xg
@@ -19,15 +24,16 @@ public class CoreService {
      * @Author Xg
      * @Date 2016/9/13 15:59
      */
-    public static String  processRequest(ReqBaseMessage reqMessage) {
-
+    public  String  processRequest(ReqBaseMessage reqMessage) {
         String  respMessage = null;
         String msgType = reqMessage.getMsgType(); //获取消息类型
 
         if(MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 处理文本消息
-            return null;
+            //RespBaseMessage textMessage = textMessageService.service((ReqTextMessage)reqMessage);
+            //return MessageUtil.messageToXml(textMessage);
+            return respMessage =  buildErrorRespMessage("我就测试一下看看行不行！", reqMessage);
         }else{
-            respMessage =  buildErrorRespMessage("请求处理异常，请稍候尝试！", reqMessage);
+            respMessage =  buildErrorRespMessage("竟然报了一个异常，稍等我看一下！", reqMessage);
             return respMessage;
         }
     }

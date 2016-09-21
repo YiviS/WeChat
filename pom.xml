@@ -7,7 +7,9 @@
     <groupId>WeChat</groupId>
     <artifactId>WeChat</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <properties>
+        <springversion>4.3.2.RELEASE</springversion>
+    </properties>
     <dependencies>
         <!--junit测试-->
         <dependency>
@@ -16,18 +18,58 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <!--springMVC-->
+        <!-- spring核心包 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <scope>compile</scope>
-            <version>4.1.7.RELEASE</version>
+            <version>${springversion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>4.1.7.RELEASE</version>
+            <artifactId>spring-oxm</artifactId>
+            <version>${springversion}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springversion}</version>
+        </dependency>
+
         <!--httpclient-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -91,7 +133,6 @@
             <artifactId>xstream</artifactId>
             <version>1.4.9</version>
         </dependency>
-
     </dependencies>
 
 </project>
