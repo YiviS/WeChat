@@ -3,6 +3,7 @@ package com.weChat.controller;
 import com.weChat.entity.WeChat;
 import com.weChat.entity.message.req.ReqBaseMessage;
 import com.weChat.entity.message.req.ReqMessageFactory;
+import com.weChat.entity.message.resp.RespBaseMessage;
 import com.weChat.service.CoreService;
 import com.weChat.util.Contents;
 import com.weChat.util.ExceptionUtil;
@@ -59,18 +60,16 @@ public class CoreController extends HttpServlet {
      */
     @RequestMapping(value="/service.do",method = RequestMethod.POST)
     @ResponseBody
-    public String  getWeiXinMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String getWeiXinMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("--------------- 窃取了你的微信消息 ---------------");
-        // 将请求、响应的编码均设置为UTF-8（防止中文乱码）
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");  //微信服务器POST消息时用的是UTF-8编码，在接收时也要用同样的编码，否则中文会乱码；
+        response.setCharacterEncoding("UTF-8"); //在响应消息（回复消息给用户）时，也将编码方式设置为UTF-8，原理同上；
         String respMessage = "";
         try {
             // 遍历求情中的所有字段转化为map
             Map<String, String> xmlMap = MessageUtil.parseXml(request);
             ReqBaseMessage reqMessage = ReqMessageFactory.build(xmlMap);
-            //调用CoreService类的processRequest方法接收、处理消息，并得到处理结果；
-            respMessage = coreService.processRequest(reqMessage);
+            respMessage = coreService.service(reqMessage);
         }catch (Exception e){
             log.info("解析请求发生错误："+ ExceptionUtil.getErrorInfo(e));
         }

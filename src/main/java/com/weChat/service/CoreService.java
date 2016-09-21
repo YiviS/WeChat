@@ -24,18 +24,18 @@ public class CoreService {
      * @Author Xg
      * @Date 2016/9/13 15:59
      */
-    public  String  processRequest(ReqBaseMessage reqMessage) {
-        String  respMessage = null;
+    public String service(ReqBaseMessage reqMessage) {
+        String respMessage = "";
         String msgType = reqMessage.getMsgType(); //获取消息类型
 
         if(MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 处理文本消息
             //RespBaseMessage textMessage = textMessageService.service((ReqTextMessage)reqMessage);
             //return MessageUtil.messageToXml(textMessage);
-            return respMessage =  buildErrorRespMessage("我就测试一下看看行不行！", reqMessage);
+            respMessage =  buildErrorRespMessage("我就测试一下看看行不行！", reqMessage);
         }else{
             respMessage =  buildErrorRespMessage("竟然报了一个异常，稍等我看一下！", reqMessage);
-            return respMessage;
         }
+        return respMessage;
     }
     /**
      *  请求异常处理方法
@@ -44,9 +44,10 @@ public class CoreService {
      * @Author Xg
      * @Date 2016/9/20 18:13
      */
-    private static String  buildErrorRespMessage(String error,ReqBaseMessage reqMessage) {
+    private static String buildErrorRespMessage(String error,ReqBaseMessage reqMessage) {
         RespTextMessage respTextMessage = new RespTextMessage();
         respTextMessage.setContent(error);
+        respTextMessage.setMsgType(MessageUtil.REQ_MESSAGE_TYPE_TEXT);
         respTextMessage.setCreateTime(System.currentTimeMillis());
         respTextMessage.setFromUserName(reqMessage.getToUserName());
         respTextMessage.setToUserName(reqMessage.getFromUserName());
