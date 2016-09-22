@@ -30,7 +30,6 @@ public class CoreService {
     public String service(Map<String, String> xmlMap) {
         String respMessage = "";
         String msgType = xmlMap.get("MsgType"); //获取消息类型
-
         if(MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 处理文本消息
             respMessage = textMessageService.service(xmlMap);
         }else{
