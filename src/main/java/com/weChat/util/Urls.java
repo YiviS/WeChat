@@ -59,4 +59,9 @@ public class Urls {
     //获取临时素材（GET）
     public final static String media_get_url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
 
+    /*-------------------------------------        图灵机器人        -------------------------------------*/
+    // 图灵接口凭证
+    public static String APIkey = "28b469afc362431689748e95e22f3c33";
+    // 图灵机器人请求（POST）
+    public final static String tuling_url = "http://www.tuling123.com/openapi/api?key=APIKEY&info=INFO";
 }

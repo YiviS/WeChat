@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Map;
 
 /**
  * @Author Xg
@@ -17,23 +18,23 @@ import javax.annotation.PostConstruct;
  */
 @Service
 public class CoreService {
+    @Autowired
+    private TextMessageService textMessageService;
     /**
      *  处理微信发来的请求
      *
-     * @param request
+     * @param xmlMap
      * @Author Xg
      * @Date 2016/9/13 15:59
      */
-    public String service(ReqBaseMessage reqMessage) {
+    public String service(Map<String, String> xmlMap) {
         String respMessage = "";
-        String msgType = reqMessage.getMsgType(); //获取消息类型
+        String msgType = xmlMap.get("MsgType"); //获取消息类型
 
         if(MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 处理文本消息
-            //RespBaseMessage textMessage = textMessageService.service((ReqTextMessage)reqMessage);
-            //return MessageUtil.messageToXml(textMessage);
-            respMessage =  buildErrorRespMessage("我就测试一下看看行不行！", reqMessage);
+            respMessage = textMessageService.service(xmlMap);
         }else{
-            respMessage =  buildErrorRespMessage("竟然报了一个异常，稍等我看一下！", reqMessage);
+            respMessage =  buildErrorRespMessage("竟然报了一个异常，稍等我看一下！", xmlMap);
         }
         return respMessage;
     }
@@ -44,13 +45,13 @@ public class CoreService {
      * @Author Xg
      * @Date 2016/9/20 18:13
      */
-    private static String buildErrorRespMessage(String error,ReqBaseMessage reqMessage) {
+    private static String buildErrorRespMessage(String error,Map<String, String> xmlMap) {
         RespTextMessage respTextMessage = new RespTextMessage();
         respTextMessage.setContent(error);
         respTextMessage.setMsgType(MessageUtil.REQ_MESSAGE_TYPE_TEXT);
         respTextMessage.setCreateTime(System.currentTimeMillis());
-        respTextMessage.setFromUserName(reqMessage.getToUserName());
-        respTextMessage.setToUserName(reqMessage.getFromUserName());
+        respTextMessage.setFromUserName(xmlMap.get("ToUserName"));
+        respTextMessage.setToUserName(xmlMap.get("FromUserName"));
         return MessageUtil.messageToXml(respTextMessage);
     }
 }

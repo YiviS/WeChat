@@ -4,7 +4,10 @@ import com.weChat.entity.message.req.ReqTextMessage;
 import com.weChat.entity.message.resp.RespBaseMessage;
 import com.weChat.entity.message.resp.RespTextMessage;
 import com.weChat.util.MessageUtil;
+import com.weChat.util.ToolsUtil;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * @Author Xg
@@ -12,17 +15,23 @@ import org.springframework.stereotype.Service;
  * @Desc 文本消息处理
  */
 @Service
-public class TextMessageService implements MessageService<ReqTextMessage>{
+public class TextMessageService{
 
-
-    public RespBaseMessage service(ReqTextMessage reqMessage){
-
+    /**
+     *   文本消息
+     *
+     * @param xmlMap
+     * @Author Xg
+     * @Date 2016/9/22 13:29
+     */
+    public String  service(Map<String ,String > xmlMap){
         RespTextMessage textMessage = new RespTextMessage();
-        textMessage.setToUserName(reqMessage.getFromUserName());
-        textMessage.setFromUserName(reqMessage.getToUserName());
+        textMessage.setToUserName(xmlMap.get("FromUserName")); // 接收方帐号（收到的OpenID）
+        textMessage.setFromUserName(xmlMap.get("ToUserName"));  // 开发者微信号
         textMessage.setCreateTime(System.currentTimeMillis());
         textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-        textMessage.setContent("这是文本消息/::)\n您发的文本消息为:" + reqMessage.getContent());
-        return textMessage;
+        textMessage.setContent(ToolsUtil.tulingRobot(xmlMap.get("Content")));
+        return MessageUtil.messageToXml(textMessage);
     }
+
 }

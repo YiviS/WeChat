@@ -61,15 +61,13 @@ public class CoreController extends HttpServlet {
     @RequestMapping(value="/service.do",method = RequestMethod.POST)
     @ResponseBody
     public String getWeiXinMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("--------------- 窃取了你的微信消息 ---------------");
         request.setCharacterEncoding("UTF-8");  //微信服务器POST消息时用的是UTF-8编码，在接收时也要用同样的编码，否则中文会乱码；
         response.setCharacterEncoding("UTF-8"); //在响应消息（回复消息给用户）时，也将编码方式设置为UTF-8，原理同上；
         String respMessage = "";
         try {
             // 遍历求情中的所有字段转化为map
             Map<String, String> xmlMap = MessageUtil.parseXml(request);
-            ReqBaseMessage reqMessage = ReqMessageFactory.build(xmlMap);
-            respMessage = coreService.service(reqMessage);
+            respMessage = coreService.service(xmlMap);
         }catch (Exception e){
             log.info("解析请求发生错误："+ ExceptionUtil.getErrorInfo(e));
         }
