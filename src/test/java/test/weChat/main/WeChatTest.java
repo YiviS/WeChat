@@ -17,7 +17,7 @@ public class WeChatTest {
     private static Logger log = LoggerFactory.getLogger(WeChatTest.class);
 
     /**
-     * 获取凭证Token1
+     * 获取凭证Token
      */
     @Test
     public void getToken(){
