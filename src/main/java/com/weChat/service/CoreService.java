@@ -32,6 +32,8 @@ public class CoreService {
         String msgType = xmlMap.get("MsgType"); //获取消息类型
         if(MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 处理文本消息
             respMessage = textMessageService.service(xmlMap);
+        }else if(MessageUtil.REQ_MESSAGE_TYPE_VOICE.equals(msgType)){
+            respMessage =  buildErrorRespMessage("这是一个语音消息", xmlMap);
         }else{
             respMessage =  buildErrorRespMessage("竟然报了一个异常，稍等我看一下！", xmlMap);
         }
@@ -47,7 +49,7 @@ public class CoreService {
     private static String buildErrorRespMessage(String error,Map<String, String> xmlMap) {
         RespTextMessage respTextMessage = new RespTextMessage();
         respTextMessage.setContent(error);
-        respTextMessage.setMsgType(MessageUtil.REQ_MESSAGE_TYPE_TEXT);
+        respTextMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
         respTextMessage.setCreateTime(System.currentTimeMillis());
         respTextMessage.setFromUserName(xmlMap.get("ToUserName"));
         respTextMessage.setToUserName(xmlMap.get("FromUserName"));
